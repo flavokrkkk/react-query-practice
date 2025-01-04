@@ -1,8 +1,9 @@
 export interface ITodos {
-  id: number;
+  id: string;
   title: string;
-  description: string;
+  description?: string;
   done: boolean;
+  userId: string;
 }
 
 export interface IApiResponse<T> {

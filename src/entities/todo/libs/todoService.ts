@@ -2,10 +2,13 @@ import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { IApiResponse, ITodos } from "../types/types";
 import { jsonApiInstance } from "../../../shared/api/apiInstance";
 
+export const baseTodoKey: string = "tasks";
+
 class TodoService {
+  //базовый ключ, всех запросов
   public getTodoListQueryOptions(page: number) {
     return queryOptions({
-      queryKey: ["todos", "list", { page }],
+      queryKey: [baseTodoKey, "list", { page }],
       queryFn: (meta) =>
         jsonApiInstance<IApiResponse<Array<ITodos>>>(
           `/tasks?_page=${page}&per_page=10`,
@@ -18,7 +21,7 @@ class TodoService {
 
   public getTodoListInfinityQueryOptions() {
     return infiniteQueryOptions({
-      queryKey: ["todos", "list"],
+      queryKey: [baseTodoKey, "list"],
       queryFn: (meta) =>
         jsonApiInstance<IApiResponse<Array<ITodos>>>(
           `/tasks?_page=${meta.pageParam}&per_page=10`,
@@ -31,7 +34,30 @@ class TodoService {
       select: (result) => result.pages.flatMap((page) => page.data),
     });
   }
+
+  public createTodos(requestData: ITodos) {
+    return jsonApiInstance<ITodos>("/tasks", {
+      method: "POST",
+      json: requestData,
+    });
+  }
+
+  public deleteTodos(id: string) {
+    return jsonApiInstance<void>(`/tasks/${id}`, {
+      method: "DELETE",
+    });
+  }
+
+  public updateTodos(id: string, requestData: Partial<ITodos>) {
+    return jsonApiInstance<ITodos>(`/tasks/${id}`, {
+      method: "PATCH",
+      json: requestData,
+    });
+  }
 }
 
-export const { getTodoListQueryOptions, getTodoListInfinityQueryOptions } =
-  new TodoService();
+export const {
+  createTodos,
+  getTodoListQueryOptions,
+  getTodoListInfinityQueryOptions,
+} = new TodoService();
