@@ -1,7 +1,8 @@
 import { getTodoListInfinityQueryOptions } from "../../../entities/todo/libs/todoService";
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useIntersection } from "../hooks/useIntersection";
 
 const TodoList = () => {
   const [isEnabled, setIsEnabled] = useState(true);
@@ -56,24 +57,3 @@ const TodoList = () => {
 };
 
 export default TodoList;
-
-export function useIntersection(onIntersection: () => void) {
-  const unsubscribe = useRef(() => {});
-
-  return useCallback((el: HTMLDivElement | null) => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((intersection) => {
-        if (intersection.isIntersecting) {
-          onIntersection();
-        }
-      });
-    });
-
-    if (el) {
-      observer.observe(el);
-      unsubscribe.current = () => observer.disconnect();
-    } else {
-      unsubscribe.current();
-    }
-  }, []);
-}

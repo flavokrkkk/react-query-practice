@@ -1,35 +1,31 @@
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { IApiResponse, ITodos } from "../types/types";
+import { jsonApiInstance } from "../../../shared/api/apiInstance";
 
 class TodoService {
-  public async getTodoList(
-    {
-      signal,
-    }: {
-      signal: AbortSignal;
-    },
-    { page }: { page: number }
-  ): Promise<IApiResponse<Array<ITodos>>> {
-    return await fetch(
-      `http://localhost:3000/tasks?_page=${page}&per_page=10`,
-      {
-        signal,
-        method: "GET",
-      }
-    ).then((response) => response.json());
-  }
-
   public getTodoListQueryOptions(page: number) {
     return queryOptions({
       queryKey: ["todos", "list", { page }],
-      queryFn: (meta) => this.getTodoList(meta, { page: page }),
+      queryFn: (meta) =>
+        jsonApiInstance<IApiResponse<Array<ITodos>>>(
+          `/tasks?_page=${page}&per_page=10`,
+          {
+            signal: meta.signal,
+          }
+        ),
     });
   }
 
   public getTodoListInfinityQueryOptions() {
     return infiniteQueryOptions({
       queryKey: ["todos", "list"],
-      queryFn: (meta) => this.getTodoList(meta, { page: meta.pageParam }),
+      queryFn: (meta) =>
+        jsonApiInstance<IApiResponse<Array<ITodos>>>(
+          `/tasks?_page=${meta.pageParam}&per_page=10`,
+          {
+            signal: meta.signal,
+          }
+        ),
       initialPageParam: 1,
       getNextPageParam: (result) => result.next,
       select: (result) => result.pages.flatMap((page) => page.data),
@@ -37,5 +33,5 @@ class TodoService {
   }
 }
 
-export const { getTodoList, getTodoListInfinityQueryOptions } =
+export const { getTodoListQueryOptions, getTodoListInfinityQueryOptions } =
   new TodoService();
