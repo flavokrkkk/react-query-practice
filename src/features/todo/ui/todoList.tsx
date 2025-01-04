@@ -1,4 +1,4 @@
-import { getTodoList } from "../../../entities/todo/libs/todoService";
+import { getTodoListInfinityQueryOptions } from "../../../entities/todo/libs/todoService";
 import { useCallback, useRef, useState } from "react";
 import clsx from "clsx";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -14,12 +14,8 @@ const TodoList = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["todos", "list"],
-    queryFn: (meta) => getTodoList(meta, { page: meta.pageParam }),
+    ...getTodoListInfinityQueryOptions(),
     enabled: isEnabled,
-    initialPageParam: 1,
-    getNextPageParam: (result) => result.next,
-    select: (result) => result.pages.flatMap((page) => page.data),
   });
 
   const toggleEnabled = () => setIsEnabled((prev) => !prev);
