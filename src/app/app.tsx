@@ -1,10 +1,19 @@
+import { useAuth } from "../features/auth/hooks/useAuth";
+import LoginForm from "../features/auth/ui/loginForm";
 import TodoList from "../features/todo/ui/todoList";
-import Providers from "./providers/providers";
 
-const App = () => (
-  <Providers>
-    <TodoList />
-  </Providers>
-);
+const App = () => {
+  const { getCurrentUser } = useAuth();
+
+  if (getCurrentUser.isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (getCurrentUser.data) {
+    return <TodoList />;
+  }
+
+  return <LoginForm />;
+};
 
 export default App;

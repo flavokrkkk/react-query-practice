@@ -3,6 +3,7 @@ import TodoCard from "./todoCard";
 import { useCreateTodo } from "../hooks/useCreateTodo";
 import { useDeleteTodo } from "../hooks/useDeleteTodos";
 import { useToggleTodo } from "../hooks/useToggleTodo";
+import { useAuth } from "../../auth/hooks/useAuth";
 
 const TodoList = () => {
   const { error, data, isLoading, intersectionElement } = useTodos();
@@ -12,6 +13,8 @@ const TodoList = () => {
   const { handleDeleteTodos, isPending: isPendingDelete } = useDeleteTodo();
 
   const { handleUpdateTodo } = useToggleTodo();
+
+  const { getCurrentUser } = useAuth();
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -23,7 +26,9 @@ const TodoList = () => {
 
   return (
     <div className=" px-10 space-y-2">
-      <h1 className="text-center mb-4">Todo list</h1>
+      <h1 className="text-center mb-4">
+        Todo list: {getCurrentUser.data?.email}
+      </h1>
       <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
         <input
           type="text"
