@@ -1,11 +1,16 @@
 import { useTodos } from "../hooks/useTodos";
 import TodoCard from "./todoCard";
 import { useCreateTodo } from "../hooks/useCreateTodo";
+import { useDeleteTodo } from "../hooks/useDeleteTodos";
 
 const TodoList = () => {
   const { error, data, isLoading, intersectionElement } = useTodos();
 
   const { handleSubmit, isPending } = useCreateTodo();
+
+  const { handleDeleteTodos, isPending: isPendingDelete } = useDeleteTodo();
+
+  // const { handleUpdateTodo } = useToggleTodo();
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -16,7 +21,7 @@ const TodoList = () => {
   }
 
   return (
-    <div className="w-[1200px] mx-auto space-y-2">
+    <div className=" px-10 space-y-2">
       <h1 className="text-center mb-4">Todo list</h1>
       <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
         <input
@@ -37,7 +42,12 @@ const TodoList = () => {
       </form>
       <div className="flex flex-col space-y-2">
         {data?.map((todo) => (
-          <TodoCard key={todo.id} todo={todo} />
+          <TodoCard
+            key={todo.id}
+            isPending={isPendingDelete}
+            todo={todo}
+            onDelete={handleDeleteTodos}
+          />
         ))}
       </div>
       {intersectionElement}

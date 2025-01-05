@@ -11,6 +11,7 @@ export function useCreateTodo() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: createTodos,
+    // onSettled вызывает действие, даже если произошла ошибка
     onSettled: async () => {
       //для мгновенного отображения данных, даже если они в кэше
       await queryClient.invalidateQueries({ queryKey: [baseTodoKey] });

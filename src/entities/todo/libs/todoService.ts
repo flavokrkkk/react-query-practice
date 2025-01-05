@@ -48,8 +48,8 @@ class TodoService {
     });
   }
 
-  public updateTodos(id: string, requestData: Partial<ITodos>) {
-    return jsonApiInstance<ITodos>(`/tasks/${id}`, {
+  public updateTodos(requestData: Partial<ITodos> & { id: string }) {
+    return jsonApiInstance<void>(`/tasks/${requestData.id}`, {
       method: "PATCH",
       json: requestData,
     });
@@ -58,6 +58,8 @@ class TodoService {
 
 export const {
   createTodos,
+  deleteTodos,
+  updateTodos,
   getTodoListQueryOptions,
   getTodoListInfinityQueryOptions,
 } = new TodoService();
