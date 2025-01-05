@@ -2,6 +2,7 @@ import { useTodos } from "../hooks/useTodos";
 import TodoCard from "./todoCard";
 import { useCreateTodo } from "../hooks/useCreateTodo";
 import { useDeleteTodo } from "../hooks/useDeleteTodos";
+import { useToggleTodo } from "../hooks/useToggleTodo";
 
 const TodoList = () => {
   const { error, data, isLoading, intersectionElement } = useTodos();
@@ -10,7 +11,7 @@ const TodoList = () => {
 
   const { handleDeleteTodos, isPending: isPendingDelete } = useDeleteTodo();
 
-  // const { handleUpdateTodo } = useToggleTodo();
+  const { handleUpdateTodo } = useToggleTodo();
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -46,6 +47,7 @@ const TodoList = () => {
             key={todo.id}
             isPending={isPendingDelete}
             todo={todo}
+            onUpdate={handleUpdateTodo}
             onDelete={handleDeleteTodos}
           />
         ))}

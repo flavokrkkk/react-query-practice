@@ -1,4 +1,21 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "email": "ivan@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "email": "petr@example.com",
+      "password": "789012"
+    },
+    {
+      "id": "3",
+      "email": "olga@example.com",
+      "password": "321654"
+    }
+  ],
   "tasks": [
     {
       "id": " 4",
@@ -10,7 +27,7 @@
       "id": " 5",
       "title": "Сделать уборку",
       "description": "Убрать в квартире и выбросить мусор",
-      "done": false
+      "done": true
     },
     {
       "id": " 6",

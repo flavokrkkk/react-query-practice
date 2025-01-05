@@ -13,6 +13,7 @@ export function useTodos() {
   } = useInfiniteQuery({
     ...getTodoListInfinityQueryOptions(),
   });
+
   const cursorRef = useIntersection(() => {
     fetchNextPage();
   });
