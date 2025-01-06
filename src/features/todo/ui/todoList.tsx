@@ -25,7 +25,7 @@ const TodoList = () => {
   }
 
   return (
-    <div className=" px-10 space-y-2">
+    <>
       <h1 className="text-center mb-4">
         Todo list: {getCurrentUser.data?.email}
       </h1>
@@ -58,7 +58,7 @@ const TodoList = () => {
         ))}
       </div>
       {intersectionElement}
-    </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const createSliceWithThunks = buildCreateSlice({
 });
 
 export const authSlice = createSliceWithThunks({
-  name: "auth-slice",
+  name: "auth",
   initialState,
   selectors: {
     userId: (state) => state.userId,
