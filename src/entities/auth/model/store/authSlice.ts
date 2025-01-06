@@ -6,7 +6,7 @@ import {
 import { rootReducer } from "../../../../app/store/store";
 import { IUser } from "../../types/types";
 import { queryClient } from "../../../../shared/api/queryClient";
-import { login } from "../../libs/authService";
+import { getUserById, login } from "../../libs/authService";
 import { MutationObserver } from "@tanstack/react-query";
 
 export type AuthState = {
@@ -52,8 +52,13 @@ export const authSlice = createSliceWithThunks({
           const mutationResult = await new MutationObserver(queryClient, {
             mutationFn: login,
             mutationKey: ["login"],
+            onSuccess: (data) => {
+              return queryClient.setQueryData(
+                getUserById(data.id).queryKey,
+                data
+              );
+            },
           }).mutate(user);
-
           return mutationResult;
         } catch (err) {
           return rejectWithValue(String(err));
@@ -69,6 +74,12 @@ export const authSlice = createSliceWithThunks({
         },
       }
     ),
+    logout: create.reducer((state) => {
+      state.userId = null;
+      localStorage.removeItem("userId");
+      //removeQueries полностью удаляет данные из кэша
+      queryClient.removeQueries();
+    }),
   }),
 }).injectInto(rootReducer);
 
