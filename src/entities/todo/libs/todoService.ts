@@ -19,12 +19,12 @@ class TodoService {
     });
   }
 
-  public getTodoListInfinityQueryOptions() {
+  public getTodoListInfinityQueryOptions(userId: string | number) {
     return infiniteQueryOptions({
-      queryKey: [baseTodoKey, "list"],
+      queryKey: [baseTodoKey, "list", userId],
       queryFn: (meta) =>
         jsonApiInstance<IApiResponse<Array<ITodos>>>(
-          `/tasks?_page=${meta.pageParam}&per_page=10`,
+          `/tasks?_page=${meta.pageParam}&per_page=10&userId=${userId}`,
           {
             signal: meta.signal,
           }

@@ -1,18 +1,27 @@
-import { QueryClientProvider } from "@tanstack/react-query";
 import { FC, PropsWithChildren } from "react";
 import { queryClient } from "../../shared/api/queryClient";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { persister } from "../../main";
 
 const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister }}
+      onSuccess={() => {
+        queryClient.resumePausedMutations().then(() => {
+          queryClient.invalidateQueries();
+        });
+      }}
+    >
       <Provider store={store}>
         <ReactQueryDevtools />
         {children}
       </Provider>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 };
 

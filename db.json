@@ -18,285 +18,274 @@
   ],
   "tasks": [
     {
-      "id": " 4",
-      "title": "Записаться на курсы",
-      "description": "Записаться на курсы по веб-разработке",
-      "done": false
-    },
-    {
       "id": " 5",
       "title": "Сделать уборку",
       "description": "Убрать в квартире и выбросить мусор",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": " 6",
       "title": "Посмотреть новый фильм",
       "description": "Посмотреть фильм 'Дюна'",
-      "done": true
-    },
-    {
-      "id": " 7",
-      "title": "Почитать книгу",
-      "description": "Прочитать 50 страниц книги '1984'",
-      "done": false
+      "done": true,
+      "userId": "3"
     },
     {
       "id": " 8",
       "title": "Сделать зарядку",
       "description": "Утренние упражнения на 15 минут",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": " 9",
       "title": "Написать статью",
       "description": "Написать статью для блога",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "10",
       "title": "Провести время с семьей",
       "description": "Устроить вечер настольных игр",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "11",
       "title": "Сделать уроки по английскому",
       "description": "Повторить времена и сделать упражнения",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "12",
       "title": "Позвонить другу",
       "description": "Узнать, как дела у друга",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "13",
       "title": "Выгулять кота",
       "description": "Прогулка на поводке во дворе",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "14",
       "title": "Купить цветы",
       "description": "Порадовать близкого человека",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "15",
       "title": "Посетить тренажерный зал",
       "description": "Тренировка на час",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "16",
       "title": "Заполнить дневник",
       "description": "Записать события за день",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "17",
       "title": "Сделать уборку на балконе",
       "description": "Разобрать ненужные вещи",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "18",
       "title": "Сходить в аптеку",
       "description": "Купить витамины",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "19",
       "title": "Постирать белье",
       "description": "Загрузить стиральную машину",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "20",
       "title": "Пройти курс по JavaScript",
       "description": "Закончить модуль по DOM",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "21",
       "title": "Сделать маникюр",
       "description": "Подстричь и отполировать ногти",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "22",
       "title": "Испечь торт",
       "description": "Шоколадный бисквит с кремом",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "23",
       "title": "Записаться к стоматологу",
       "description": "Проверить состояние зубов",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "24",
       "title": "Собрать чемодан",
       "description": "Подготовиться к поездке",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "25",
       "title": "Посмотреть сериал",
       "description": "Новый сезон любимого шоу",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "26",
       "title": "Попробовать новое блюдо",
       "description": "Приготовить карбонару",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "27",
       "title": "Почистить окна",
       "description": "Помыть стекла и рамы",
-      "done": false
+      "done": false,
+      "userId": "3"
     },
     {
       "id": "28",
       "title": "Позаниматься йогой",
       "description": "Медитация и растяжка",
-      "done": true
+      "done": true,
+      "userId": "3"
     },
     {
       "id": "29",
       "title": "Купить новый ноутбук",
       "description": "Выбрать модель и оформить заказ",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "30",
       "title": "Научиться плавать",
       "description": "Посетить урок по плаванию",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "31",
       "title": "Пройти курс по React",
       "description": "Изучить хуки и состояние",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "32",
       "title": "Посадить цветы",
       "description": "Купленные семена тюльпанов",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "33",
       "title": "Купить подарок",
       "description": "Подарок на день рождения друга",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "34",
       "title": "Постирать шторы",
       "description": "Свежие шторы в гостиной",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "35",
       "title": "Отправить посылку",
       "description": "Посылка на почте для друга",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "36",
       "title": "Закончить чтение книги",
       "description": "Последняя глава",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "37",
       "title": "Принять ванну",
       "description": "Расслабляющая ванна с пеной",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "38",
       "title": "Сделать фотоальбом",
       "description": "Собрать лучшие фото за год",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "39",
       "title": "Приготовить ужин",
       "description": "Рыба с овощами",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "40",
       "title": "Изучить новую песню",
       "description": "Научиться играть на гитаре",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
       "id": "41",
       "title": "Помыть посуду",
       "description": "Чистая кухня",
-      "done": true
+      "done": true,
+      "userId": "2"
     },
     {
       "id": "42",
       "title": "Купить билеты в кино",
       "description": "На новый фильм в субботу",
-      "done": false
+      "done": false,
+      "userId": "2"
     },
     {
-      "id": "g_tA78JfFrpsXcc4hDuM3",
+      "id": "v5iHP0aUn6AxmoykwJ_Tr",
       "done": false,
-      "title": "записать тик ток",
+      "title": "dwdwwd - Owner: ivan",
       "userId": "1"
     },
     {
-      "id": "leY3xni60VnSs_hGhOxkK",
+      "id": "3oqrb8ltH3jKJrxBg7dKx",
       "done": false,
-      "title": "сделать милкшейк",
-      "userId": "1"
-    },
-    {
-      "id": "PdUvHf8AUfOwballK5iZr",
-      "done": false,
-      "title": "заварить кофе",
-      "userId": "1"
-    },
-    {
-      "id": "sAEMqHsmhINbDw0OkqP7z",
-      "done": false,
-      "title": "посмотреть дизайн страйфа",
-      "userId": "1"
-    },
-    {
-      "id": "qQO3G0iVSSzppponEe8SN",
-      "done": false,
-      "title": "круто",
-      "userId": "1"
-    },
-    {
-      "id": "0dBai9deV15oiKMtfoRFu",
-      "done": false,
-      "title": "учу реакт квери",
-      "userId": "1"
-    },
-    {
-      "id": "qIvbIJQkE1bLeVtTe9GZq",
-      "done": false,
-      "title": "splice arr",
-      "userId": "1"
-    },
-    {
-      "id": "kfluwHqJf2kacmfufP-KT",
-      "done": false,
-      "title": "пугали",
+      "title": "dwdwdw - Owner: ivan",
       "userId": "1"
     }
   ]

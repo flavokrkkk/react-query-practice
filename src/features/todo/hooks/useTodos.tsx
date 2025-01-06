@@ -1,8 +1,12 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { getTodoListInfinityQueryOptions } from "../../../entities/todo/libs/todoService";
 import { useIntersection } from "./useIntersection";
+import { useAppSelector } from "../../../shared/hooks/useAppSelector";
+import { authSelectors } from "../../../entities/auth/model/store/authSlice";
 
 export function useTodos() {
+  const userId = useAppSelector(authSelectors.userId) || "";
+
   const {
     data,
     error,
@@ -10,8 +14,9 @@ export function useTodos() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
-    ...getTodoListInfinityQueryOptions(),
+    //дата подгружается без T | undefined
+  } = useSuspenseInfiniteQuery({
+    ...getTodoListInfinityQueryOptions(userId),
   });
 
   const cursorRef = useIntersection(() => {

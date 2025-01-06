@@ -6,9 +6,12 @@ import {
 } from "../../../entities/todo/libs/todoService";
 import { ITodos } from "../../../entities/todo/types/types";
 import { useCallback } from "react";
+import { useAppSelector } from "../../../shared/hooks/useAppSelector";
+import { authSelectors } from "../../../entities/auth/model/store/authSlice";
 
 export function useToggleTodo() {
   const queryClient = useQueryClient();
+  const userId = useAppSelector(authSelectors.userId) || "";
 
   const { mutate, isPending } = useMutation({
     mutationFn: (todo: Partial<ITodos> & { id: string }) => updateTodos(todo),
@@ -22,12 +25,12 @@ export function useToggleTodo() {
 
       //берем данные из кэша
       const previousTodo = queryClient.getQueryData(
-        getTodoListInfinityQueryOptions().queryKey
+        getTodoListInfinityQueryOptions(userId).queryKey
       );
 
       //обновляем данные в кэше
       queryClient.setQueryData(
-        getTodoListInfinityQueryOptions().queryKey,
+        getTodoListInfinityQueryOptions(userId).queryKey,
         (requestData) => {
           const data = requestData || { pages: [], pageParams: [] };
 
@@ -52,7 +55,7 @@ export function useToggleTodo() {
     onError: (_, __, context) => {
       if (context) {
         queryClient.setQueryData(
-          [getTodoListInfinityQueryOptions().queryKey],
+          [getTodoListInfinityQueryOptions(userId).queryKey],
           context.previousTodo
         );
       }

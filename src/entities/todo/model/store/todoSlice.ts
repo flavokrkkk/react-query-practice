@@ -10,6 +10,7 @@ import {
 import { ITodos } from "../../types/types";
 import { nanoid } from "nanoid";
 import { authActions } from "../../../auth/model/store/authSlice";
+import { getUserById } from "../../../auth/libs/authService";
 
 export type TodoState = {
   todos: Array<ITodos>;
@@ -39,23 +40,25 @@ export const todoSlice = createSliceWithThunks({
           dispatch(authActions.logout());
           return rejectWithValue("User not authenticated");
         }
+        //получаем данные из кэша
+        const user = await queryClient.fetchQuery(getUserById(userId));
 
         const newTodo = {
           id: nanoid(),
           done: false,
-          title: title,
+          title: `${title} - Owner: ${user.email.split("@")[0]}`,
           userId: userId,
         };
 
         const prevTodos = queryClient.getQueryData(
-          getTodoListInfinityQueryOptions().queryKey
+          getTodoListInfinityQueryOptions(userId).queryKey
         );
         queryClient.cancelQueries({
           queryKey: [baseTodoKey],
         });
 
         const updateTodosList = queryClient.setQueryData(
-          getTodoListInfinityQueryOptions().queryKey,
+          getTodoListInfinityQueryOptions(userId).queryKey,
           (requestData) => {
             const data = requestData || { pages: [], pageParams: [] };
             return {
@@ -69,7 +72,6 @@ export const todoSlice = createSliceWithThunks({
             };
           }
         );
-
         try {
           await new MutationObserver(queryClient, {
             mutationFn: createTodos,
@@ -78,7 +80,7 @@ export const todoSlice = createSliceWithThunks({
           return updateTodosList?.pages[0].data;
         } catch (err) {
           queryClient.setQueryData(
-            getTodoListInfinityQueryOptions().queryKey,
+            getTodoListInfinityQueryOptions(userId).queryKey,
             prevTodos
           );
           return rejectWithValue(String(err));
